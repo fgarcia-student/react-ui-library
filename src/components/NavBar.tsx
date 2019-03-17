@@ -57,52 +57,48 @@ export const NavBar: React.FunctionComponent<NavBarProps> = ({
     tabKeys.indexOf(defaultActiveTab)
   );
   const activeTab = tabs[activeTabKey];
-  if (activeTab) {
-    const { color = NavBarDefaults.tabColor, ...actions } = activeTab;
-    const handleClick = React.useCallback(
-      (pressedTabKey: string, pressedTabIndex: number) => {
-        if (pressedTabKey !== activeTabKey && !disabled) {
-          const newActiveTab = tabs[pressedTabKey];
-          if (actions.onLeave) {
-            actions.onLeave();
-          }
-          if (newActiveTab.onActive) {
-            newActiveTab.onActive();
-          }
-          setActiveTabKey(pressedTabKey);
-          setActiveTabIndex(pressedTabIndex);
+  const { color = NavBarDefaults.tabColor, ...actions } = activeTab;
+  const handleClick = React.useCallback(
+    (pressedTabKey: string, pressedTabIndex: number) => {
+      if (pressedTabKey !== activeTabKey && !disabled) {
+        const newActiveTab = tabs[pressedTabKey];
+        if (actions.onLeave) {
+          actions.onLeave();
         }
-      },
-      [disabled, activeTabKey]
-    );
-    return (
-      <div className="NavBar">
-        <svg
-          width={`${tabKeys.length * 100}`}
-          height="75"
-          viewBox={`0 0 ${tabKeys.length * 100} 75`}
-        >
-          <g className="NavBar__Svg" fill={color} fill-rule="evenodd">
-            <path
-              className="NavBar__Svg__Bar"
-              d={`M0 25h${tabKeys.length * 100}v50H0z`}
-            />
-            <path
-              className="NavBar__Svg__Tab"
-              d={`M${activeTabIndex * 100 + 86},25 C${activeTabIndex * 100 +
-                74},25 ${activeTabIndex * 100 + 69},5 ${activeTabIndex * 100 +
-                48},5 C${activeTabIndex * 100 + 27},5 ${activeTabIndex * 100 +
-                24},25 ${activeTabIndex * 100 + 10},25 L${activeTabIndex * 100 +
-                86},25 Z`}
-            />
-          </g>
-        </svg>
-        <div className="NavBar__Content">
-          {tabKeys.map(createNavBarContent(activeTabKey, tabs, handleClick))}
-        </div>
+        if (newActiveTab.onActive) {
+          newActiveTab.onActive();
+        }
+        setActiveTabKey(pressedTabKey);
+        setActiveTabIndex(pressedTabIndex);
+      }
+    },
+    [disabled, activeTabKey]
+  );
+  return (
+    <div className="NavBar">
+      <svg
+        width={`${tabKeys.length * 100}`}
+        height="75"
+        viewBox={`0 0 ${tabKeys.length * 100} 75`}
+      >
+        <g className="NavBar__Svg" fill={color} fill-rule="evenodd">
+          <path
+            className="NavBar__Svg__Bar"
+            d={`M0 25h${tabKeys.length * 100}v50H0z`}
+          />
+          <path
+            className="NavBar__Svg__Tab"
+            d={`M${activeTabIndex * 100 + 86},25 C${activeTabIndex * 100 +
+              74},25 ${activeTabIndex * 100 + 69},5 ${activeTabIndex * 100 +
+              48},5 C${activeTabIndex * 100 + 27},5 ${activeTabIndex * 100 +
+              24},25 ${activeTabIndex * 100 + 10},25 L${activeTabIndex * 100 +
+              86},25 Z`}
+          />
+        </g>
+      </svg>
+      <div className="NavBar__Content">
+        {tabKeys.map(createNavBarContent(activeTabKey, tabs, handleClick))}
       </div>
-    );
-  }
-
-  return null;
+    </div>
+  );
 };

@@ -1,8 +1,12 @@
 {
   "name": "cisco-react-toolkit",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
+  "main": "build/lib/index.js",
+  "types": "build/lib/index.d.ts",
+  "files": [
+    "build/lib"
+  ],
   "devDependencies": {
     "@storybook/addon-info": "^5.0.1",
     "@storybook/addon-knobs": "^5.0.1",
@@ -11,6 +15,7 @@
     "@types/react": "^16.8.8",
     "awesome-typescript-loader": "^5.2.1",
     "babel-core": "^6.26.3",
+    "cpx": "^1.5.0",
     "jest": "^24.5.0",
     "react-docgen-typescript-webpack-plugin": "^1.1.0",
     "storybook-addon-jsx": "^7.0.0",
@@ -24,7 +29,15 @@
     "react-hot-loader": "^4.8.0",
     "sass-loader": "^7.1.0"
   },
+  "resolutions": {
+    "react": "16.8.4",
+    "react-dom": "16.8.4"
+  },
   "scripts": {
-    "storybook": "start-storybook -p 6006 -c .storybook"
+    "storybook": "start-storybook -p 6006 -c .storybook",
+    "build": "npm run build-lib && npm run build-storybook",
+    "build-lib": "tsc && npm run copy-styles-to-lib",
+    "build-storybook": "build-storybook -c .storybook -o sb_build",
+    "copy-styles-to-lib": "cpx \"./src/styles/*.scss\" ./build/lib/styles"
   }
 }
