@@ -1,0 +1,20 @@
+.Toggle {
+  &,
+  &__indicator,
+  &__background {
+    transition: fill 0.2s ease-out, stroke 0.2s ease-out,
+      transform 0.2s ease-out;
+  }
+  cursor: pointer;
+
+  &--disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+
+  &__indicator {
+    &--toggled {
+      transform: translateX(50%);
+    }
+  }
+}
