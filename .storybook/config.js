@@ -15,7 +15,6 @@ setAddon(JSXAddon);
 // require all stories in stories directory with filename *.stories.js
 const req = require.context('../src/stories', true, /.stories.js$/);
 const loadStories = () => {
-  require('./welcomeStory');
   req.keys().forEach(fileName => req(fileName));
 };
 

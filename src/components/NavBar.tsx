@@ -33,6 +33,7 @@ const createNavBarContent = (
   const animateVisibleClass = isCurrentlyActiveTab ? 'popUpIcon' : '';
   return (
     <div
+      key={tabKey}
       className="NavBar__Content__Item ripple"
       onClick={handleClick.bind({}, tabKey, tabIndex)}
     >
@@ -81,7 +82,7 @@ export const NavBar: React.FunctionComponent<NavBarProps> = ({
         height="75"
         viewBox={`0 0 ${tabKeys.length * 100} 75`}
       >
-        <g className="NavBar__Svg" fill={color} fill-rule="evenodd">
+        <g className="NavBar__Svg" fill={color} fillRule="evenodd">
           <path
             className="NavBar__Svg__Bar"
             d={`M0 25h${tabKeys.length * 100}v50H0z`}
