@@ -23,7 +23,7 @@ export interface ToggleProps {
   /**
    * this dictates the border color of the toggle element
    *
-   * @default borderColorInactive
+   * @default value of borderColorInactive
    */
   borderColorActive?: string;
   /**
@@ -35,7 +35,7 @@ export interface ToggleProps {
   /**
    * this dictates the color of the toggle element background
    *
-   * @default backgroundColorInactive
+   * @default value of backgroundColorInactive
    */
   backgroundColorActive?: string;
   /**
@@ -47,7 +47,7 @@ export interface ToggleProps {
   /**
    * this dictates the color of the toggle element indicator
    *
-   * @default indicatorColorInactive
+   * @default value of indicatorColorInactive
    */
   indicatorColorActive?: string;
   /**
@@ -80,7 +80,7 @@ export interface ToggleProps {
   onToggle?: (nextState: boolean) => void;
 }
 
-export const Toggle: React.FunctionComponent<ToggleProps> = ({
+export const Toggle: React.FC<ToggleProps> = ({
   borderColorInactive = ToggleDefaults.borderColor,
   borderColorActive = borderColorInactive,
   backgroundColorInactive = ToggleDefaults.backgroundColor,

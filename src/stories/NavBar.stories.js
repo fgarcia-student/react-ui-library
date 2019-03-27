@@ -1,6 +1,5 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { object, select } from '@storybook/addon-knobs/react';
 
 import { NavBar } from '../components/NavBar';
 import { wInfo } from '../../utils';
@@ -102,9 +101,9 @@ storiesOf('Components/NavBar', module)
     For best results, restrict Icon size to 25x25
   `)
   )
-  .addWithJSX('2 Tabs', () => (
-    <NavBar tabs={object('tabs', twoTabs)} defaultActiveTab="first" />
+  .addWithJSX('2 Tabs fullscreen', () => (
+    <NavBar tabs={twoTabs} fullWidth={true} />
   ))
   .addWithJSX('4 Tabs with Icons', () => (
-    <NavBar tabs={object('tabs', fourIconTabs)} defaultActiveTab="second" />
+    <NavBar tabs={fourIconTabs} defaultActiveTab="second" />
   ));
